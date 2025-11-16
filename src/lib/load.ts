@@ -119,7 +119,8 @@ export interface CompatibleFileHandle {
  * - Firefox/Safari → <input type="file"> fallback
  */
 export async function open(): Promise<CompatibleFileHandle> {
-  const supportsNativePicker = "showOpenFilePicker" in window;
+  // const supportsNativePicker = "showOpenFilePicker" in window;
+  const supportsNativePicker = false; // save file location is restricted in some OSes so FSA doesn't do anything
 
   if (supportsNativePicker) {
     // Native File System Access API (Chrome/Edge)
