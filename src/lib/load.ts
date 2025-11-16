@@ -124,7 +124,15 @@ export async function open(): Promise<CompatibleFileHandle> {
   if (supportsNativePicker) {
     // Native File System Access API (Chrome/Edge)
     const [fileHandle] = await (window as any).showOpenFilePicker({
-      multiple: false
+      multiple: false,
+      types: [
+        {
+          description: "Balatro save file",
+          accept: {
+            "application/octet-stream": [".jkr"] // MIME type can be generic
+          }
+        }
+      ]
     });
 
     return {
